@@ -273,40 +273,107 @@
     .prize-3 .card-icon { background: var(--accent-orange); }
     .prize-4 .card-icon { background: var(--accent-pink); }
 
-    /* ───── CTA ───── */
-    .cta-section {
+    /* ───── REGISTRATION ───── */
+    .reg-section {
       background: linear-gradient(160deg, var(--green-dark), var(--green-mid));
       text-align: center;
       color: var(--text-light);
       padding: 5rem 1.5rem;
     }
 
-    .cta-section h2 {
+    .reg-section h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 900;
       margin-bottom: .5rem;
     }
 
-    .cta-section p { opacity: .8; margin-bottom: 2rem; font-size: 1.1rem; }
+    .reg-section > p { opacity: .8; margin-bottom: 2rem; font-size: 1.05rem; }
 
-    .btn-cta {
-      display: inline-block;
+    .reg-form {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
+      color: var(--text-dark);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    .reg-form label {
+      display: block;
+      font-weight: 600;
+      font-size: .9rem;
+      margin-bottom: .4rem;
+      color: #333;
+    }
+
+    .reg-form input,
+    .reg-form select {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 1.25rem;
+      transition: border-color .2s;
+      background: #fafafa;
+    }
+
+    .reg-form input:focus,
+    .reg-form select:focus {
+      outline: none;
+      border-color: var(--green-light);
+      background: #fff;
+    }
+
+    .reg-form .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 1rem;
       background: var(--accent-red);
       color: #fff;
-      text-decoration: none;
-      font-size: 1.25rem;
-      font-weight: 700;
-      padding: 1rem 3rem;
+      border: none;
       border-radius: 999px;
-      box-shadow: 0 4px 20px rgba(239,68,68,0.4);
+      font-size: 1.15rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(239,68,68,0.3);
       transition: transform .2s, box-shadow .2s;
     }
 
-    .btn-cta:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 28px rgba(239,68,68,0.5);
+    .reg-form .btn-submit:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 28px rgba(239,68,68,0.45);
     }
+
+    .reg-form .btn-submit:disabled {
+      opacity: .6;
+      transform: none;
+      cursor: not-allowed;
+    }
+
+    .reg-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .reg-success .checkmark {
+      font-size: 3rem;
+      margin-bottom: .5rem;
+    }
+
+    .reg-success h3 {
+      font-size: 1.3rem;
+      color: var(--green-mid);
+      margin-bottom: .3rem;
+    }
+
+    .reg-success p { color: #666; }
 
     /* ───── SPONSORS ───── */
     .sponsors { background: var(--bg-cream); }
@@ -503,14 +570,86 @@
   </section>
 
   <!-- ════════ REGISTRATION ════════ -->
-  <section class="cta-section" id="pamelding">
+  <section class="reg-section" id="pamelding">
     <h2>Forhåndspåmelding</h2>
-    <p>Forhåndspåmelding er åpen frem til 19. mai kl. 18:00. Du kan også melde deg på i sekretariatet på løpsdagen.</p>
-    <!-- TODO: Erstatt URL-en under med embed-URL fra Google Forms (Fil → Del → Bygg inn HTML) -->
-    <div style="background: #fff; border-radius: 16px; overflow: hidden; max-width: 700px; margin: 1.5rem auto 0;">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScR0oLpNj-2wooXnlhuPH45rQYictlVqwc_DsqJful_EQuUaw/viewform?embedded=true" width="100%" height="1069" frameborder="0" marginheight="0" marginwidth="0" style="display:block;">Laster skjema…</iframe>
+    <p>Åpen frem til 19. mai kl. 18:00. Du kan også melde deg på i sekretariatet på løpsdagen.</p>
+
+    <div class="reg-form" id="regForm">
+      <div id="formFields">
+        <label for="fornavn">Fornavn</label>
+        <input type="text" id="fornavn" name="fornavn" placeholder="Fornavn" required>
+
+        <label for="etternavn">Etternavn</label>
+        <input type="text" id="etternavn" name="etternavn" placeholder="Etternavn" required>
+
+        <label for="epost">E-post</label>
+        <input type="email" id="epost" name="epost" placeholder="din@epost.no" required>
+
+        <label for="alder">Alder</label>
+        <input type="number" id="alder" name="alder" placeholder="Alder" min="1" max="120" required>
+
+        <label for="distanse">Distanse</label>
+        <select id="distanse" name="distanse" required>
+          <option value="" disabled selected>Velg distanse</option>
+          <option value="5 km">5 km – Hovedløpet (start 17:30)</option>
+          <option value="3 km">3 km – Mosjonsløp (start 18:00)</option>
+          <option value="Barneløype">Barneløype (start 18:00)</option>
+        </select>
+
+        <button type="button" class="btn-submit" id="btnSubmit" onclick="submitForm()">Meld deg på</button>
+      </div>
+
+      <div class="reg-success" id="regSuccess">
+        <div class="checkmark">&#x2705;</div>
+        <h3>Påmelding mottatt!</h3>
+        <p>Takk for at du melder deg på Heimdalsløpet. Vi gleder oss til å se deg 20. mai!</p>
+      </div>
     </div>
   </section>
+
+  <script>
+    // TODO: Erstatt denne URL-en med din Google Apps Script web app URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxw2byj8Ksm0QtZ1HzlGbFj5r8Cvkxm1omZkci1xD9h_erhtSVpy8FGLjjcXU58l3jf/exec';
+
+    async function submitForm() {
+      const btn = document.getElementById('btnSubmit');
+      const fornavn = document.getElementById('fornavn');
+      const etternavn = document.getElementById('etternavn');
+      const epost = document.getElementById('epost');
+      const alder = document.getElementById('alder');
+      const distanse = document.getElementById('distanse');
+
+      if (!fornavn.value || !etternavn.value || !epost.value || !alder.value || !distanse.value) {
+        alert('Vennligst fyll ut alle feltene.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sender…';
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            epost: epost.value,
+            fornavn: fornavn.value,
+            etternavn: etternavn.value,
+            alder: alder.value,
+            distanse: distanse.value
+          })
+        });
+
+        document.getElementById('formFields').style.display = 'none';
+        document.getElementById('regSuccess').style.display = 'block';
+      } catch (e) {
+        alert('Noe gikk galt. Prøv igjen senere.');
+        btn.disabled = false;
+        btn.textContent = 'Meld deg på';
+      }
+    }
+  </script>
 
   <!-- ════════ SPONSORS ════════ -->
   <section class="sponsors" id="sponsorer">
