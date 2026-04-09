@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heimdalsløpet – Vårløpet 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-dark: #0b3d2e;
+      --green-mid: #14663e;
+      --green-light: #1a8a52;
+      --accent-yellow: #fbbf24;
+      --accent-red: #ef4444;
+      --accent-orange: #f97316;
+      --accent-blue: #3b82f6;
+      --accent-pink: #ec4899;
+      --accent-purple: #8b5cf6;
+      --bg-cream: #fdf8f0;
+      --text-dark: #1a1a1a;
+      --text-light: #f0fdf4;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ───── HERO ───── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(160deg, #062419 0%, var(--green-dark) 30%, var(--green-mid) 60%, var(--green-light) 100%);
+      color: var(--text-light);
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 80%, rgba(251,191,36,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 500px at 80% 20%, rgba(26,138,82,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: .5rem 1.2rem;
+      font-size: .85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: .02em;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: .3rem;
+    }
+
+    .hero .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--accent-yellow);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero-meta-item {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: .75rem 1.5rem;
+      font-weight: 600;
+    }
+
+    .hero-meta-item span { display: block; font-size: .75rem; opacity: .7; text-transform: uppercase; letter-spacing: .08em; }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      opacity: .6;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ───── SECTIONS ───── */
+    section { padding: 5rem 1.5rem; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: .5rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ───── CARDS GRID ───── */
+    .card-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .card-grid.three { grid-template-columns: repeat(2, 1fr); }
+
+    .card-grid.three .card-featured { grid-column: 1 / -1; }
+    .card-grid.four  { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08);
+    }
+
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: .3rem; }
+    .card p { color: #555; font-size: .95rem; }
+    .card .meta { font-size: .85rem; color: #888; margin-top: .5rem; }
+
+    /* Accent stripe on top of card */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+
+    /* ───── DISTANCES ───── */
+    .distances { background: linear-gradient(180deg, var(--bg-cream) 0%, #e8f5e9 100%); }
+
+    .dist-3::before  { background: var(--accent-blue); }
+    .dist-5::before  { background: var(--accent-orange); }
+    .dist-barn::before { background: var(--accent-pink); }
+
+    .dist-3 .card-icon  { background: var(--accent-blue); }
+    .dist-5 .card-icon  { background: var(--accent-orange); }
+    .dist-barn .card-icon { background: var(--accent-pink); }
+
+    .distance-badge {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin-bottom: .2rem;
+    }
+
+    .strava-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: .75rem;
+      padding: .5rem 1rem;
+      background: #fc4c02;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: .9rem;
+      transition: background .2s;
+    }
+
+    .strava-link:hover { background: #e04400; }
+
+    /* ───── EVENT DAY ───── */
+    .event-day { background: linear-gradient(180deg, #e8f5e9 0%, var(--bg-cream) 100%); }
+
+    .event-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .dino-card {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border: 2px solid var(--accent-yellow);
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .dino-card::before { background: var(--accent-yellow); }
+
+    .dino-card .dino-emoji { font-size: 4rem; }
+
+    .dino-card .dino-text h3 { font-size: 1.4rem; color: #92400e; }
+    .dino-card .dino-text p { color: #a16207; }
+
+    /* ───── PRIZES ───── */
+    .prizes { background: #fff; }
+
+    .prize-card { text-align: center; }
+    .prize-card .card-icon { margin: 0 auto 1rem; }
+
+    .prize-1::before { background: var(--accent-yellow); }
+    .prize-2::before { background: var(--accent-purple); }
+    .prize-3::before { background: var(--accent-orange); }
+    .prize-4::before { background: var(--accent-pink); }
+
+    .prize-1 .card-icon { background: var(--accent-yellow); }
+    .prize-2 .card-icon { background: var(--accent-purple); }
+    .prize-3 .card-icon { background: var(--accent-orange); }
+    .prize-4 .card-icon { background: var(--accent-pink); }
+
+    /* ───── CTA ───── */
+    .cta-section {
+      background: linear-gradient(160deg, var(--green-dark), var(--green-mid));
+      text-align: center;
+      color: var(--text-light);
+      padding: 5rem 1.5rem;
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      margin-bottom: .5rem;
+    }
+
+    .cta-section p { opacity: .8; margin-bottom: 2rem; font-size: 1.1rem; }
+
+    .btn-cta {
+      display: inline-block;
+      background: var(--accent-red);
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.25rem;
+      font-weight: 700;
+      padding: 1rem 3rem;
+      border-radius: 999px;
+      box-shadow: 0 4px 20px rgba(239,68,68,0.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn-cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 28px rgba(239,68,68,0.5);
+    }
+
+    /* ───── SPONSORS ───── */
+    .sponsors { background: var(--bg-cream); }
+
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .sponsor-slot {
+      aspect-ratio: 16/9;
+      background: #fff;
+      border: 2px dashed #d1d5db;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: .9rem;
+      font-weight: 600;
+      transition: border-color .2s;
+    }
+
+    .sponsor-slot:hover { border-color: var(--green-light); }
+
+    /* ───── FOOTER ───── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #999;
+      font-size: .85rem;
+    }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 600px) {
+      section { padding: 3rem 1rem; }
+      .hero-meta { flex-direction: column; align-items: center; }
+      .dino-card { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>&#x1F49B;</span> Til inntekt for Barnekreftforeningen
+      </div>
+      <h1>Heimdalsløpet</h1>
+      <p class="subtitle">Vårløpet 2026</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span>Dato</span>
+          20. mai 2026
+        </div>
+        <div class="hero-meta-item">
+          <span>Start</span>
+          kl. 17:30 &amp; 18:00
+        </div>
+        <div class="hero-meta-item">
+          <span>Arrangert av</span>
+          G2013
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+  </section>
+
+  <!-- ════════ DISTANCES ════════ -->
+  <section class="distances" id="distanser">
+    <div class="container">
+      <h2 class="section-title">Distanser</h2>
+      <p class="section-subtitle">Velg din distanse &ndash; alle er velkomne!</p>
+      <div class="card-grid three">
+
+        <div class="card dist-5 card-featured">
+          <div class="card-icon">&#x1F525;</div>
+          <div class="distance-badge" style="color: var(--accent-orange);">5 km</div>
+          <h3>Hovedløpet</h3>
+          <p>For deg som vil utfordre deg selv litt ekstra!</p>
+          <p class="meta">Start kl. 17:30</p>
+          <a class="strava-link" href="https://www.strava.com/segments/41189193" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+            Se løypa på Strava
+          </a>
+        </div>
+
+        <div class="card dist-3">
+          <div class="card-icon">&#x1F3C3;</div>
+          <div class="distance-badge" style="color: var(--accent-blue);">3 km</div>
+          <h3>Mosjonsløp</h3>
+          <p>Perfekt for nybegynnere og de som vil ha en hyggelig tur.</p>
+          <p class="meta">Start kl. 18:00</p>
+          <a class="strava-link" href="https://www.strava.com/segments/41202525" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+            Se løypa på Strava
+          </a>
+        </div>
+
+        <div class="card dist-barn">
+          <div class="card-icon">&#x1F476;</div>
+          <div class="distance-badge" style="color: var(--accent-pink);">Barneløype</div>
+          <h3>For de minste</h3>
+          <p>Egen løype tilpasset barn &ndash; gøy og trygt!</p>
+          <p class="meta">Start kl. 18:00</p>
+          <a class="strava-link" href="https://www.strava.com/segments/41202516" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+            Se løypa på Strava
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ EVENT DAY ════════ -->
+  <section class="event-day" id="palopsdagen">
+    <div class="container">
+      <h2 class="section-title">På løpsdagen</h2>
+      <p class="section-subtitle">Mer enn bare løping!</p>
+      <div class="event-grid">
+
+        <div class="card">
+          <div class="card-icon" style="background: var(--accent-red);">&#x1F354;</div>
+          <h3>Kiosk</h3>
+          <p>Hamburger, drikke og snacks!</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background: var(--accent-purple);">&#x1F3A1;</div>
+          <h3>Lykkehjulet</h3>
+          <p>Prøv lykken og vinn flotte premier!</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background: var(--accent-blue);">&#x1F3AB;</div>
+          <h3>Loddsalg</h3>
+          <p>Kjøp lodd og støtt Barnekreftforeningen.</p>
+        </div>
+
+        <!-- DINO HIGHLIGHT -->
+        <div class="card dino-card">
+          <div class="dino-emoji">&#x1F996;</div>
+          <div class="dino-text">
+            <h3>RBK-Dino kommer!</h3>
+            <p>Dino fra Rosenborg stiller opp og signerer autografer. Ikke gå glipp av dette!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PRIZES ════════ -->
+  <section class="prizes" id="premiering">
+    <div class="container">
+      <h2 class="section-title">Premiering</h2>
+      <p class="section-subtitle">Det handler om stemning, ikke tid!</p>
+      <div class="card-grid four">
+
+        <div class="card prize-card prize-1">
+          <div class="card-icon">&#x1F389;</div>
+          <h3>Mest stemningsfulle lag</h3>
+          <p>Laget som skaper best stemning under løpet.</p>
+        </div>
+
+        <div class="card prize-card prize-2">
+          <div class="card-icon">&#x1F46B;</div>
+          <h3>Største lag</h3>
+          <p>Største venne- eller jobblag. Utfordre kollegaer og venner!</p>
+        </div>
+
+        <div class="card prize-card prize-3">
+          <div class="card-icon">&#x1F3AD;</div>
+          <h3>Mest kreative utkledning</h3>
+          <p>For barn (2013 og yngre). Vis kreativiteten!</p>
+        </div>
+
+        <div class="card prize-card prize-4">
+          <div class="card-icon">&#x1F308;</div>
+          <h3>Mest fargerike</h3>
+          <p>For barn (2013 og yngre). Jo mer farge, jo bedre!</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CTA ════════ -->
+  <section class="cta-section" id="pamelding">
+    <h2>Bli med på Heimdalsløpet!</h2>
+    <p>Utfordre kollegaer og venner &ndash; alle er velkomne.</p>
+    <!-- TODO: Erstatt # med faktisk påmeldingslenke -->
+    <a href="#" class="btn-cta">Meld deg på</a>
+  </section>
+
+  <!-- ════════ SPONSORS ════════ -->
+  <section class="sponsors" id="sponsorer">
+    <div class="container">
+      <h2 class="section-title">Sponsorer</h2>
+      <p class="section-subtitle">Takk til våre støttespillere!</p>
+      <div class="sponsor-grid">
+        <div class="sponsor-slot">Logo 1</div>
+        <div class="sponsor-slot">Logo 2</div>
+        <div class="sponsor-slot">Logo 3</div>
+        <div class="sponsor-slot">Logo 4</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer>
+    <p>Heimdalsløpet 2026 &ndash; Arrangert av G2013 til inntekt for Barnekreftforeningen</p>
+  </footer>
+
+</body>
+</html>
