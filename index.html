@@ -233,10 +233,14 @@
     .lightbox.active { display: flex; }
 
     .lightbox img {
+      width: 500px;
       max-width: 90vw;
-      max-height: 90vh;
+      height: auto;
       border-radius: 12px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      object-fit: contain;
+      background: #fff;
+      padding: 8px;
     }
 
     .distance-badge {
