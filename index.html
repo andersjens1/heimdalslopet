@@ -206,6 +206,39 @@
     .dist-5 .card-icon  { background: var(--accent-orange); }
     .dist-barn .card-icon { background: var(--accent-pink); }
 
+    .route-img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+
+    .route-img:hover { opacity: .9; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
     .distance-badge {
       font-family: 'Playfair Display', serif;
       font-size: 2.4rem;
@@ -474,7 +507,7 @@
       <div class="card-grid three">
 
         <div class="card dist-5 card-featured">
-          <img src="5km.png" alt="5 km løype" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;">
+          <img src="5km.png" alt="5 km løype" class="route-img" onclick="openLightbox(this.src)">
           <div class="distance-badge" style="color: var(--accent-orange);">5 km</div>
           <h3>Hovedløpet</h3>
           <p>For deg som vil utfordre deg selv litt ekstra!</p>
@@ -486,7 +519,7 @@
         </div>
 
         <div class="card dist-3">
-          <img src="3km.png" alt="3 km løype" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;">
+          <img src="3km.png" alt="3 km løype" class="route-img" onclick="openLightbox(this.src)">
           <div class="distance-badge" style="color: var(--accent-blue);">3 km</div>
           <h3>Mosjonsløp</h3>
           <p>Perfekt for nybegynnere og de som vil ha en hyggelig tur.</p>
@@ -498,7 +531,7 @@
         </div>
 
         <div class="card dist-barn">
-          <img src="Barnel%C3%B8ype.png" alt="Barneløype" style="width: 100%; border-radius: 12px; margin-bottom: 1rem;">
+          <img src="Barnel%C3%B8ype.png" alt="Barneløype" class="route-img" onclick="openLightbox(this.src)">
           <div class="distance-badge" style="color: var(--accent-pink);">Barneløype</div>
           <h3>For de minste</h3>
           <p>Egen løype tilpasset barn &ndash; gøy og trygt!</p>
@@ -638,6 +671,20 @@
         btn.disabled = false;
         btn.textContent = 'Meld deg på';
       }
+    }
+  </script>
+
+  <!-- ════════ LIGHTBOX ════════ -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Løypekart">
+  </div>
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
     }
   </script>
 
