@@ -575,6 +575,15 @@
           <p>Kjøp lodd og støtt Barnekreftforeningen.</p>
         </div>
 
+        <div class="card" id="weatherCard">
+          <div class="card-icon" style="background: var(--accent-yellow);">&#x1F324;</div>
+          <h3>Været 20. mai</h3>
+          <div id="weatherContent">
+            <p style="color: #888;">Værvarsel er tilgjengelig ca. 10 dager før løpet.</p>
+            <a href="https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/1-211102/Trondheim/Tr%C3%B8ndelag/Heimdal" target="_blank" rel="noopener" style="color: var(--green-mid); font-weight: 600; font-size: .9rem;">Se Yr for Heimdal &rarr;</a>
+          </div>
+        </div>
+
         <!-- DINO HIGHLIGHT -->
         <div class="card dino-card">
           <div class="dino-emoji">&#x1F996;</div>
@@ -586,16 +595,6 @@
 
       </div>
 
-      <!-- YR WEATHER -->
-      <div style="margin-top: 2.5rem; text-align: center;">
-        <a href="https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/1-211102/Trondheim/Tr%C3%B8ndelag/Heimdal" target="_blank" rel="noopener" class="card" style="display: inline-flex; align-items: center; gap: 1rem; padding: 1.2rem 2rem; text-decoration: none; color: var(--text-dark);">
-          <span style="font-size: 2rem;">&#x1F324;</span>
-          <div style="text-align: left;">
-            <h3 style="font-size: 1rem; margin-bottom: .2rem;">Været på Heimdal</h3>
-            <p style="font-size: .85rem; color: #888;">Se værvarselet for løpsdagen på Yr</p>
-          </div>
-        </a>
-      </div>
     </div>
   </section>
 
@@ -701,6 +700,45 @@
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('active');
     }
+  </script>
+
+  <script>
+    async function fetchWeather() {
+      try {
+        // Heimdal coordinates
+        const res = await fetch('https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=63.35&lon=10.35', {
+          headers: { 'User-Agent': 'heimdalslopet.no contact@heimdalslopet.no' }
+        });
+        const data = await res.json();
+
+        // Find forecast for May 20 around 17:00
+        const target = data.properties.timeseries.find(t => {
+          const d = new Date(t.time);
+          return d.getMonth() === 4 && d.getDate() === 20 && d.getHours() >= 16 && d.getHours() <= 18;
+        });
+
+        if (!target) return; // Forecast not available yet
+
+        const details = target.data.instant.details;
+        const symbol = target.data.next_1_hours?.summary?.symbol_code || target.data.next_6_hours?.summary?.symbol_code || '';
+        const temp = Math.round(details.air_temperature);
+        const wind = Math.round(details.wind_speed);
+        const iconUrl = 'https://raw.githubusercontent.com/metno/weathericons/main/weather/svg/' + symbol + '.svg';
+
+        document.getElementById('weatherContent').innerHTML =
+          '<div style="display:flex; align-items:center; gap:1rem; margin: .75rem 0;">' +
+            '<img src="' + iconUrl + '" alt="' + symbol + '" style="width:48px; height:48px;">' +
+            '<div>' +
+              '<p style="font-size:1.5rem; font-weight:700; color:var(--text-dark); margin:0;">' + temp + '°C</p>' +
+              '<p style="font-size:.85rem; color:#888; margin:0;">Vind: ' + wind + ' m/s</p>' +
+            '</div>' +
+          '</div>' +
+          '<a href="https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/1-211102/Trondheim/Tr%C3%B8ndelag/Heimdal" target="_blank" rel="noopener" style="color:var(--green-mid); font-weight:600; font-size:.85rem;">Fullstendig varsel på Yr &rarr;</a>';
+      } catch (e) {
+        // Keep fallback content
+      }
+    }
+    fetchWeather();
   </script>
 
   <!-- ════════ SPONSORS ════════ -->
