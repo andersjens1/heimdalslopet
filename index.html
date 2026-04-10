@@ -411,10 +411,24 @@
     }
 
     /* ───── RESPONSIVE ───── */
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .card-grid.four { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Mobile */
     @media (max-width: 600px) {
       section { padding: 3rem 1rem; }
       .hero-meta { flex-direction: column; align-items: center; }
       .dino-card { justify-content: center; text-align: center; }
+      .card-grid.three { grid-template-columns: 1fr; }
+      .card-grid.three .card-featured { grid-column: auto; }
+      .card-grid.four { grid-template-columns: 1fr; }
+      .event-grid { grid-template-columns: 1fr; }
+      .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
+      .reg-form { padding: 1.5rem 1.25rem; }
+      .reg-section { padding: 3rem 1rem; }
     }
   </style>
 </head>
@@ -425,7 +439,7 @@
     <div class="hero-content">
       <img src="heimdal-if-logo-transparent.png" alt="Heimdal IF" style="width: 120px; margin-bottom: 1.5rem; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));">
       <div class="hero-badge">
-        <span>&#x1F49B;</span> Til inntekt for Barnekreftforeningen
+        <span>&#x1F49B;</span> Til inntekt for Barnekreftforeningen og arrangørlagene
       </div>
       <h1>Heimdalsløpet</h1>
       <p class="subtitle">Vårløpet 2026</p>
@@ -640,7 +654,8 @@
 
   <!-- ════════ FOOTER ════════ -->
   <footer>
-    <p>Heimdalsløpet 2026 &ndash; Arrangert av Heimdal Håndball G2013 &amp; J2013 til inntekt for Barnekreftforeningen</p>
+    <img src="heimdal-if-logo-transparent.png" alt="Heimdal IF" style="width: 60px; margin-bottom: .75rem;">
+    <p>Heimdalsløpet 2026 &ndash; Arrangert av Heimdal Håndball G2013 &amp; J2013.<br>Inntektene deles mellom Barnekreftforeningen og arrangørlagene.</p>
   </footer>
 
 </body>
