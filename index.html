@@ -545,6 +545,34 @@
 
     .sponsor-logo img { max-height: 60px; max-width: 200px; object-fit: contain; }
 
+    /* ───── VIPPS MOBILE/DESKTOP ───── */
+    .vipps-mobile-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      background: #ff5b24;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: .85rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      margin-top: .5rem;
+      box-shadow: 0 4px 16px rgba(255,91,36,0.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .vipps-mobile-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 24px rgba(255,91,36,0.45);
+    }
+
+    @media (max-width: 768px) {
+      .vipps-qr-img { display: none !important; }
+      .vipps-mobile-btn { display: inline-flex; }
+    }
+
     /* ───── FOOTER ───── */
     footer {
       text-align: center;
@@ -808,9 +836,15 @@
 
         <div style="background: var(--bg-cream); border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1.5rem; text-align: center;">
           <p style="font-size: 1.1rem; font-weight: 700; color: var(--green-mid); margin-bottom: .3rem;">&#x1F4B0; Startavgift: min. 60 kr</p>
-          <p style="font-size: .9rem; color: #666; margin-bottom: .25rem;">Scan QR-koden eller betal via Vipps til <strong>942884</strong></p>
+          <p style="font-size: .9rem; color: #666; margin-bottom: .25rem;">Betal via Vipps til <strong>942884</strong></p>
           <p style="font-size: .82rem; color: #888; margin-bottom: .75rem;">Skriv gjerne navn på deltaker(e) i Vipps-meldingen – det hjelper oss med matchingen!</p>
-          <img src="vipps-qr.png" alt="Vipps QR-kode" style="width: 160px; height: 160px; object-fit: contain; border-radius: 8px;">
+          <!-- QR-kode: vises kun på desktop -->
+          <img src="vipps-qr.png" alt="Vipps QR-kode" class="vipps-qr-img" style="width: 160px; height: 160px; object-fit: contain; border-radius: 8px;">
+          <!-- Vipps-knapp: vises kun på mobil -->
+          <a href="vipps://" class="vipps-mobile-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            Åpne Vipps – betal til 942884
+          </a>
         </div>
 
         <label for="fornavn">Fornavn</label>
