@@ -815,9 +815,9 @@
         // ntfy push-varsling
         fetch('https://ntfy.sh/heimdalslopet-pamelding', {
           method: 'POST',
-          body: fornavn.value + ' ' + etternavn.value + ' har meldt seg på ' + distanse.value + '!',
+          body: fornavn.value + ' ' + etternavn.value + ' har meldt seg pa ' + distanse.value + '!',
           headers: {
-            'Title': '🏃 Ny påmelding – Heimdalsløpet',
+            'Title': 'Ny pamelding - Heimdalslopet',
             'Priority': 'default',
             'Tags': 'running'
           }
