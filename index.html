@@ -733,12 +733,47 @@
   <!-- ════════ REGISTRATION ════════ -->
   <section class="reg-section" id="pamelding">
     <h2>Forhåndspåmelding</h2>
-    <p>Du kan også melde deg på i sekretariatet på løpsdagen.</p>
+    <p>Forhåndspåmelding er åpen frem til 19. mai kl. 18:00. Du kan også melde deg på i sekretariatet på løpsdagen.</p>
 
-    <div class="reg-form" id="regForm" style="text-align: center;">
-      <p style="font-size: 1.1rem; font-weight: 700; color: var(--green-mid); margin-bottom: .5rem;">Startavgift: min. 60 kr</p>
-      <p style="font-size: 1.2rem; font-weight: 700; color: var(--green-mid); margin-bottom: 0.5rem;">Påmeldingen er ikke åpen ennå</p>
-      <p style="color: #666;">Forhåndspåmeldingen åpner snart. Følg med her!</p>
+    <div class="reg-form" id="regForm">
+      <div id="formFields">
+
+        <div style="background: var(--bg-cream); border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1.5rem; text-align: center;">
+          <p style="font-size: 1.1rem; font-weight: 700; color: var(--green-mid); margin-bottom: .3rem;">&#x1F4B0; Startavgift: min. 60 kr</p>
+          <p style="font-size: .9rem; color: #666; margin-bottom: .25rem;">Betal via Vipps til <strong>942884</strong></p>
+          <p style="font-size: .85rem; color: #888;">Melding: <em>Startkontigent – Heimdalsløpet</em></p>
+        </div>
+
+        <label for="fornavn">Fornavn</label>
+        <input type="text" id="fornavn" name="fornavn" placeholder="Fornavn" required>
+
+        <label for="etternavn">Etternavn</label>
+        <input type="text" id="etternavn" name="etternavn" placeholder="Etternavn" required>
+
+        <label for="epost">E-post</label>
+        <input type="email" id="epost" name="epost" placeholder="din@epost.no" required>
+
+        <label for="alder">Alder</label>
+        <input type="number" id="alder" name="alder" placeholder="Alder" min="1" max="120" required>
+
+        <label for="distanse">Distanse</label>
+        <select id="distanse" name="distanse" required>
+          <option value="" disabled selected>Velg distanse</option>
+          <option value="5 km">5 km – Hovedløpet (start 17:30)</option>
+          <option value="3 km">3 km – Mosjonsløp (start 18:00)</option>
+          <option value="Barneløype">Barneløype (start 18:00)</option>
+        </select>
+
+        <button type="button" class="btn-submit" id="btnSubmit" onclick="submitForm()">Meld deg på</button>
+      </div>
+
+      <div class="reg-success" id="regSuccess">
+        <div class="checkmark">&#x2705;</div>
+        <h3>Påmelding mottatt!</h3>
+        <p style="margin-bottom:.5rem;">Takk for at du melder deg på Heimdalsløpet!</p>
+        <p style="font-weight:600;">Husk å betale startavgift (min. 60 kr) via Vipps til <strong>942884</strong>.<br><span style="font-weight:400; font-size:.9rem;">Melding: Startkontigent – Heimdalsløpet</span></p>
+        <p style="margin-top:.75rem;">Vi gleder oss til å se deg 20. mai! 🏃</p>
+      </div>
     </div>
   </section>
 
