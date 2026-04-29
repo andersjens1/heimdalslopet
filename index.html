@@ -812,6 +812,17 @@
           })
         });
 
+        // ntfy push-varsling
+        fetch('https://ntfy.sh/heimdalslopet-pamelding', {
+          method: 'POST',
+          body: fornavn.value + ' ' + etternavn.value + ' har meldt seg på ' + distanse.value + '!',
+          headers: {
+            'Title': '🏃 Ny påmelding – Heimdalsløpet',
+            'Priority': 'default',
+            'Tags': 'running'
+          }
+        });
+
         document.getElementById('formFields').style.display = 'none';
         document.getElementById('regSuccess').style.display = 'block';
       } catch (e) {
