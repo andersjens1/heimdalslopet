@@ -821,7 +821,7 @@
             'Priority': 'default',
             'Tags': 'running'
           }
-        });
+        }).then(r => console.log('ntfy status:', r.status)).catch(err => console.error('ntfy feil:', err));
 
         document.getElementById('formFields').style.display = 'none';
         document.getElementById('regSuccess').style.display = 'block';
