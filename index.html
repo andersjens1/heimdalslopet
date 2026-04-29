@@ -467,32 +467,83 @@
 
     .reg-success p { color: #666; }
 
+    /* ───── NÆRMILJØPRIS ───── */
+    .award-section {
+      background: linear-gradient(160deg, #fff8e1, #fffde7);
+      border-top: 4px solid var(--accent-yellow);
+      border-bottom: 4px solid var(--accent-yellow);
+    }
+
+    .award-banner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 24px rgba(251,191,36,0.15);
+    }
+
+    .award-trophy { font-size: 5rem; flex-shrink: 0; }
+
+    .award-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      color: #92400e;
+      margin-bottom: .5rem;
+    }
+
+    .award-text p { color: #a16207; font-size: .95rem; line-height: 1.6; }
+
+    .award-badge {
+      display: inline-block;
+      background: var(--accent-yellow);
+      color: #78350f;
+      font-weight: 700;
+      font-size: .85rem;
+      padding: .3rem .9rem;
+      border-radius: 999px;
+      margin-bottom: .75rem;
+    }
+
+    @media (max-width: 600px) {
+      .award-banner { flex-direction: column; text-align: center; gap: 1rem; }
+      .award-trophy { font-size: 3.5rem; }
+    }
+
     /* ───── SPONSORS ───── */
     .sponsors { background: var(--bg-cream); }
 
     .sponsor-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: center;
       max-width: 900px;
       margin: 0 auto;
     }
 
-    .sponsor-slot {
-      aspect-ratio: 16/9;
+    .sponsor-logo {
       background: #fff;
-      border: 2px dashed #d1d5db;
       border-radius: var(--radius);
+      padding: 1.5rem 2.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #aaa;
-      font-size: .9rem;
-      font-weight: 600;
-      transition: border-color .2s;
+      transition: transform .2s, box-shadow .2s;
     }
 
-    .sponsor-slot:hover { border-color: var(--green-light); }
+    .sponsor-logo:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .sponsor-logo img { max-height: 60px; max-width: 200px; object-fit: contain; }
 
     /* ───── FOOTER ───── */
     footer {
@@ -730,6 +781,20 @@
     </div>
   </section>
 
+  <!-- ════════ NÆRMILJØPRIS ════════ -->
+  <section class="award-section">
+    <div class="container">
+      <div class="award-banner">
+        <div class="award-trophy">🏆</div>
+        <div class="award-text">
+          <span class="award-badge">NTE Nærmiljøprisen 2026 – Trondheimsregionen</span>
+          <h2>Vinner av Nærmiljøprisen!</h2>
+          <p>Heimdal Håndball J2013 er kåret til vinner av NTE Nærmiljøprisen i Trondheimsregionen. Juryen trakk særlig frem at Heimdalsløpet er åpent for alle, senker terskelen for å ta nærmiljøet i bruk, og bidrar til aktivitet og fellesskap for mange. Vi er stolte og takknemlige &ndash; og gleder oss til å se dere på startstreken 20. mai!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════ REGISTRATION ════════ -->
   <section class="reg-section" id="pamelding">
     <h2>Forhåndspåmelding</h2>
@@ -897,6 +962,19 @@
     }
     fetchWeather();
   </script>
+
+  <!-- ════════ SAMARBEIDSPARTNERE ════════ -->
+  <section class="sponsors">
+    <div class="container">
+      <h2 class="section-title">Samarbeidspartnere</h2>
+      <p class="section-subtitle">Takk til våre støttespillere!</p>
+      <div class="sponsor-grid">
+        <a href="https://www.nte.no" target="_blank" rel="noopener" class="sponsor-logo">
+          <img src="nte_logo.png" alt="NTE">
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- ════════ FOOTER ════════ -->
   <footer>
