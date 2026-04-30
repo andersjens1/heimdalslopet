@@ -740,10 +740,18 @@
           <p>Hamburger, drikke og snacks!</p>
         </div>
 
-        <div class="card">
-          <div class="card-icon" style="background: var(--accent-purple);">&#x1F3A1;</div>
-          <h3>Lykkehjulet</h3>
-          <p>Prøv lykken og vinn flotte premier!</p>
+        <div class="card" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.5rem;">
+          <div style="flex: 1; min-width: 180px;">
+            <div class="card-icon" style="background: var(--accent-purple);">&#x1F3A1;</div>
+            <h3>Lykkehjulet</h3>
+            <p>Hvem lander på gull?</p>
+            <div id="wheelResult" style="min-height: 2.2rem; margin: .85rem 0; font-weight: 700; font-size: 1.2rem; text-align: center;"></div>
+            <button id="spinBtn" style="display:block; width:100%; padding:.85rem; background:var(--accent-purple); color:#fff; border:none; border-radius:999px; font-size:1.1rem; font-weight:700; font-family:'Inter',sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(139,92,246,0.35); transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">🎡 Snurr!</button>
+          </div>
+          <div style="position:relative; flex-shrink:0;">
+            <div style="position:absolute; top:-14px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:13px solid transparent; border-right:13px solid transparent; border-top:24px solid #1a1a1a; z-index:2;"></div>
+            <canvas id="wheelCanvas" width="260" height="260" style="display:block; border-radius:50%; box-shadow:0 6px 28px rgba(0,0,0,0.18);"></canvas>
+          </div>
         </div>
 
         <div class="card">
@@ -927,6 +935,104 @@
         btn.textContent = 'Meld deg på';
       }
     }
+  </script>
+
+  <!-- ════════ LYKKEHJUL ════════ -->
+  <script>
+  (function() {
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const cx = W / 2, cy = W / 2, r = W / 2 - 6;
+
+    const segments = [
+      '#ef4444', // rød
+      '#1a1a1a', // sort
+      '#ef4444', // rød
+      '#1a1a1a', // sort
+      '#ef4444', // rød
+      '#1a1a1a', // sort
+      '#ef4444', // rød
+      '#fbbf24', // gull
+    ];
+
+    const n = segments.length;
+    const arc = (2 * Math.PI) / n;
+    let currentAngle = 0;
+    let spinning = false;
+
+    function draw(angle) {
+      ctx.clearRect(0, 0, W, W);
+      for (let i = 0; i < n; i++) {
+        const start = angle + i * arc;
+        const end = start + arc;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, r, start, end);
+        ctx.closePath();
+        ctx.fillStyle = segments[i];
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      }
+      // Senterring
+      ctx.beginPath();
+      ctx.arc(cx, cy, 20, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+      ctx.strokeStyle = '#ddd';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    draw(currentAngle);
+
+    document.getElementById('spinBtn').addEventListener('click', function() {
+      if (spinning) return;
+      spinning = true;
+      this.disabled = true;
+      document.getElementById('wheelResult').innerHTML = '';
+
+      const spins = (6 + Math.random() * 6) * Math.PI * 2;
+      const extra = Math.random() * Math.PI * 2;
+      const target = currentAngle + spins + extra;
+      const duration = 4000 + Math.random() * 1000;
+      const startTime = performance.now();
+      const startAngle = currentAngle;
+      const btn = this;
+
+      function animate(now) {
+        const t = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 4);
+        currentAngle = startAngle + (target - startAngle) * eased;
+        draw(currentAngle);
+        if (t < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          currentAngle = target % (Math.PI * 2);
+          spinning = false;
+          btn.disabled = false;
+          // Finn vinnersegment (peker er øverst = -PI/2)
+          const norm = ((-Math.PI / 2 - currentAngle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+          const winIdx = Math.floor(norm / arc) % n;
+          const color = segments[winIdx];
+          const res = document.getElementById('wheelResult');
+          if (color === '#fbbf24') {
+            res.innerHTML = '🌟 GULL! 🌟';
+            res.style.color = '#92400e';
+          } else if (color === '#ef4444') {
+            res.innerHTML = '🔴 Rød!';
+            res.style.color = '#ef4444';
+          } else {
+            res.innerHTML = '⚫ Svart!';
+            res.style.color = '#333';
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    });
+  })();
   </script>
 
   <!-- ════════ LIGHTBOX ════════ -->
