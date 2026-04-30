@@ -936,22 +936,28 @@
   </script>
 
   <!-- ════════ LYKKEHJUL ════════ -->
+  <style>
+    @keyframes confettiFall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
   <script>
   (function() {
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
-    const W = canvas.width; // 180px
+    const W = canvas.width;
     const cx = W / 2, cy = W / 2, r = W / 2 - 5;
 
     const segments = [
-      '#ef4444', // rød
-      '#1a1a1a', // sort
-      '#ef4444', // rød
-      '#1a1a1a', // sort
-      '#ef4444', // rød
-      '#1a1a1a', // sort
-      '#ef4444', // rød
-      '#fbbf24', // gull
+      { color: '#ef4444', label: 'Gratis is!',    prize: '🍦 Gratis is til deg!' },
+      { color: '#1a1a1a', label: 'Prøv igjen',    prize: '😅 Nesten! Prøv igjen.' },
+      { color: '#ef4444', label: 'Klem av trener',prize: '🤗 Klem av trener!' },
+      { color: '#1a1a1a', label: 'Neste gang',    prize: '😬 Neste gang kanskje...' },
+      { color: '#ef4444', label: 'Dans i mål!',   prize: '💃 Du MÅ danse i mål!' },
+      { color: '#1a1a1a', label: 'Prøv igjen',    prize: '😅 Nesten! Prøv igjen.' },
+      { color: '#ef4444', label: 'Gratis vaffel', prize: '🧇 Gratis vaffel!' },
+      { color: '#fbbf24', label: 'GULL!',         prize: '🌟 GULL! Du vinner stort!' },
     ];
 
     const n = segments.length;
@@ -968,15 +974,24 @@
         ctx.moveTo(cx, cy);
         ctx.arc(cx, cy, r, start, end);
         ctx.closePath();
-        ctx.fillStyle = segments[i];
+        ctx.fillStyle = segments[i].color;
         ctx.fill();
         ctx.strokeStyle = '#fff';
         ctx.lineWidth = 3;
         ctx.stroke();
+
+        // Tekst på segmentet
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(start + arc / 2);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = segments[i].color === '#fbbf24' ? '#78350f' : '#fff';
+        ctx.font = 'bold 9px Inter, sans-serif';
+        ctx.fillText(segments[i].label, r - 6, 3);
+        ctx.restore();
       }
-      // Senterring
       ctx.beginPath();
-      ctx.arc(cx, cy, 20, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 16, 0, Math.PI * 2);
       ctx.fillStyle = '#fff';
       ctx.fill();
       ctx.strokeStyle = '#ddd';
@@ -985,6 +1000,19 @@
     }
 
     draw(currentAngle);
+
+    function confetti() {
+      const colors = ['#fbbf24','#ef4444','#3b82f6','#8b5cf6','#ec4899','#1a8a52','#f97316'];
+      for (let i = 0; i < 120; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          const size = 7 + Math.random() * 9;
+          el.style.cssText = `position:fixed;top:-12px;left:${Math.random()*100}vw;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:confettiFall ${2+Math.random()*2.5}s linear forwards;z-index:9999;pointer-events:none;`;
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 5000);
+        }, i * 25);
+      }
+    }
 
     document.getElementById('spinBtn').addEventListener('click', function() {
       if (spinning) return;
@@ -1011,21 +1039,13 @@
           currentAngle = target % (Math.PI * 2);
           spinning = false;
           btn.disabled = false;
-          // Finn vinnersegment (peker er øverst = -PI/2)
           const norm = ((-Math.PI / 2 - currentAngle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
           const winIdx = Math.floor(norm / arc) % n;
-          const color = segments[winIdx];
+          const seg = segments[winIdx];
           const res = document.getElementById('wheelResult');
-          if (color === '#fbbf24') {
-            res.innerHTML = '🌟 GULL! 🌟';
-            res.style.color = '#92400e';
-          } else if (color === '#ef4444') {
-            res.innerHTML = '🔴 Rød!';
-            res.style.color = '#ef4444';
-          } else {
-            res.innerHTML = '⚫ Svart!';
-            res.style.color = '#333';
-          }
+          res.innerHTML = seg.prize;
+          res.style.color = seg.color === '#fbbf24' ? '#92400e' : seg.color === '#ef4444' ? '#ef4444' : '#333';
+          if (seg.color === '#fbbf24') confetti();
         }
       }
       requestAnimationFrame(animate);
