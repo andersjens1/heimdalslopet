@@ -951,14 +951,30 @@
 
     const segments = [
       { color: '#ef4444', label: 'Gratis is!',    prize: '🍦 Gratis is til deg!' },
-      { color: '#1a1a1a', label: 'Prøv igjen',    prize: '😅 Nesten! Prøv igjen.' },
+      { color: '#1a1a1a', label: 'Trøstepremie',  prize: null },
       { color: '#ef4444', label: 'Klem av trener',prize: '🤗 Klem av trener!' },
-      { color: '#1a1a1a', label: 'Neste gang',    prize: '😬 Neste gang kanskje...' },
+      { color: '#1a1a1a', label: 'Trøstepremie',  prize: null },
       { color: '#ef4444', label: 'Dans i mål!',   prize: '💃 Du MÅ danse i mål!' },
-      { color: '#1a1a1a', label: 'Prøv igjen',    prize: '😅 Nesten! Prøv igjen.' },
+      { color: '#1a1a1a', label: 'Trøstepremie',  prize: null },
       { color: '#ef4444', label: 'Gratis vaffel', prize: '🧇 Gratis vaffel!' },
       { color: '#fbbf24', label: 'GULL!',         prize: '🌟 GULL! Du vinner stort!' },
     ];
+
+    const trostepremier = [
+      '😂 Du skylder treneren en kaffe!',
+      '🎤 Syng én strofe – valgfri sang!',
+      '🏃 Løp én ekstra runde som straff!',
+      '🤸 10 hoppejekker – nå!',
+      '📣 Rop "HEIMDAL!" så høyt du kan!',
+      '🧦 Du bærer trenerens bag i fem min!',
+      '🙈 Svart som fremtiden din på lykkehjulet...',
+      '🕺 Du må gjøre en seierdans – uten seier!',
+      '🤦 Beklager! Ta en high-five som trøst.',
+      '😬 Neste gang! (Kanskje...)',
+    ];
+    function getTrostepremie() {
+      return trostepremier[Math.floor(Math.random() * trostepremier.length)];
+    }
 
     const n = segments.length;
     const arc = (2 * Math.PI) / n;
@@ -1043,8 +1059,9 @@
           const winIdx = Math.floor(norm / arc) % n;
           const seg = segments[winIdx];
           const res = document.getElementById('wheelResult');
-          res.innerHTML = seg.prize;
-          res.style.color = seg.color === '#fbbf24' ? '#92400e' : seg.color === '#ef4444' ? '#ef4444' : '#333';
+          const prize = seg.prize !== null ? seg.prize : getTrostepremie();
+          res.innerHTML = prize;
+          res.style.color = seg.color === '#fbbf24' ? '#92400e' : seg.color === '#ef4444' ? '#ef4444' : '#555';
           if (seg.color === '#fbbf24') confetti();
         }
       }
