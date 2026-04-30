@@ -740,18 +740,16 @@
           <p>Hamburger, drikke og snacks!</p>
         </div>
 
-        <div class="card" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.5rem;">
-          <div style="flex: 1; min-width: 180px;">
-            <div class="card-icon" style="background: var(--accent-purple);">&#x1F3A1;</div>
-            <h3>Lykkehjulet</h3>
-            <p>Hvem lander på gull?</p>
-            <div id="wheelResult" style="min-height: 2.2rem; margin: .85rem 0; font-weight: 700; font-size: 1.2rem; text-align: center;"></div>
-            <button id="spinBtn" style="display:block; width:100%; padding:.85rem; background:var(--accent-purple); color:#fff; border:none; border-radius:999px; font-size:1.1rem; font-weight:700; font-family:'Inter',sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(139,92,246,0.35); transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">🎡 Snurr!</button>
+        <div class="card" style="text-align:center;">
+          <div class="card-icon" style="background: var(--accent-purple); margin: 0 auto 1rem;">&#x1F3A1;</div>
+          <h3>Lykkehjulet</h3>
+          <p>Hvem lander på gull?</p>
+          <div style="position:relative; display:inline-block; margin: 1rem 0 .5rem;">
+            <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:18px solid #1a1a1a; z-index:2;"></div>
+            <canvas id="wheelCanvas" width="180" height="180" style="display:block; border-radius:50%; box-shadow:0 4px 20px rgba(0,0,0,0.15);"></canvas>
           </div>
-          <div style="position:relative; flex-shrink:0;">
-            <div style="position:absolute; top:-14px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:13px solid transparent; border-right:13px solid transparent; border-top:24px solid #1a1a1a; z-index:2;"></div>
-            <canvas id="wheelCanvas" width="260" height="260" style="display:block; border-radius:50%; box-shadow:0 6px 28px rgba(0,0,0,0.18);"></canvas>
-          </div>
+          <div id="wheelResult" style="min-height:1.8rem; font-weight:700; font-size:1.1rem; margin-bottom:.75rem;"></div>
+          <button id="spinBtn" style="display:block; width:100%; padding:.75rem; background:var(--accent-purple); color:#fff; border:none; border-radius:999px; font-size:1rem; font-weight:700; font-family:'Inter',sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(139,92,246,0.35); transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">🎡 Snurr!</button>
         </div>
 
         <div class="card">
@@ -942,8 +940,8 @@
   (function() {
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
-    const W = canvas.width;
-    const cx = W / 2, cy = W / 2, r = W / 2 - 6;
+    const W = canvas.width; // 180px
+    const cx = W / 2, cy = W / 2, r = W / 2 - 5;
 
     const segments = [
       '#ef4444', // rød
