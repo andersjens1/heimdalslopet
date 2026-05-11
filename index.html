@@ -752,30 +752,11 @@
           <button id="spinBtn" style="display:block; width:100%; padding:.75rem; background:var(--accent-purple); color:#fff; border:none; border-radius:999px; font-size:1rem; font-weight:700; font-family:'Inter',sans-serif; cursor:pointer; box-shadow:0 4px 16px rgba(139,92,246,0.35); transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">🎡 Snurr!</button>
         </div>
 
-        <div class="card" style="grid-column: 1 / -1;">
-          <div style="display:flex; flex-wrap:wrap; gap:1.5rem; align-items:flex-start;">
-            <div style="flex:1; min-width:220px;">
-              <div class="card-icon" style="background: var(--accent-blue);">&#x1F3AB;</div>
-              <h3>Loddsalg</h3>
-              <p style="margin-bottom:.75rem;">Kjøp lodd og vinn flotte premier! 50 % av inntektene går til Barnekreftforeningen ❤️</p>
-              <div style="display:flex; flex-direction:column; gap:.4rem; font-size:.9rem;">
-                <div><strong>💰 1 lodd = 20 kr</strong> – kjøp så mange du vil!</div>
-                <div>📱 Vipps <strong>#942884</strong> – kategori: <strong>«Loddsalg»</strong></div>
-                <div>✏️ Husk navn og telefonnummer i kommentarfeltet</div>
-                <div>📅 Trekning: <strong>søndag 24. mai 2026</strong></div>
-              </div>
-              <div style="margin-top:.75rem; font-size:.85rem; color:#666;">
-                🥇 Hovedgevinst: Gavekort kr 2 000 på Britannia Hotel<br>
-                🎭 2 billetter til Matilda – Trøndelag Teater<br>
-                💆 Massasje (verdi kr 1 090) – Trondheim Spa<br>
-                <span style="color:var(--green-mid); font-weight:600;">+ over 50 premier totalt!</span>
-              </div>
-            </div>
-            <div style="text-align:center; flex-shrink:0;">
-              <img src="vipps-qr-loddsalg.jpg" alt="Vipps QR-kode loddsalg" style="width:140px; height:140px; border-radius:10px; border:2px solid #e0e0e0; display:block; margin-bottom:.4rem;">
-              <div style="font-size:.8rem; color:#888;">Scan for å betale</div>
-            </div>
-          </div>
+        <div class="card">
+          <div class="card-icon" style="background: var(--accent-blue);">&#x1F3AB;</div>
+          <h3>Loddsalg</h3>
+          <p>Kjøp lodd og vinn flotte premier! 50 % går til Barnekreftforeningen ❤️</p>
+          <p class="meta" style="margin-top:.5rem;">1 lodd = 20 kr · Trekning 24. mai</p>
         </div>
 
         <div class="card" id="weatherCard">
@@ -797,6 +778,40 @@
 
       </div>
 
+    </div>
+  </section>
+
+  <!-- ════════ LODDSALG ════════ -->
+  <section style="background:#fff; padding:4rem 1.5rem;">
+    <div class="container">
+      <h2 class="section-title">🎟 Loddsalg</h2>
+      <p class="section-subtitle">Kjøp lodd og støtt Barnekreftforeningen – trekning 24. mai!</p>
+      <div style="max-width:780px; margin:0 auto; background:linear-gradient(135deg,#fff8e1,#fffde7); border:2px solid var(--accent-yellow); border-radius:var(--radius); padding:2rem; display:flex; flex-wrap:wrap; gap:2rem; align-items:center;">
+
+        <img src="vipps-qr-loddsalg.jpg" alt="Vipps QR-kode loddsalg" style="width:150px; height:150px; border-radius:12px; flex-shrink:0; border:2px solid #fbbf24;">
+
+        <div style="flex:1; min-width:220px;">
+          <div style="display:flex; flex-direction:column; gap:.6rem; font-size:1rem; margin-bottom:1rem;">
+            <div>💰 <strong>1 lodd = 20 kr</strong> – kjøp så mange du vil!</div>
+            <div>📱 Vipps <strong>#942884</strong> – kategori: <strong>«Loddsalg»</strong></div>
+            <div>✏️ Husk navn og telefonnummer i kommentarfeltet</div>
+            <div>📅 Trekning: <strong>søndag 24. mai 2026</strong></div>
+          </div>
+          <div style="background:rgba(255,255,255,0.7); border-radius:10px; padding:1rem; font-size:.9rem; color:#555; line-height:1.7;">
+            🥇 Gavekort kr 2 000 – Britannia Hotel<br>
+            🎭 2 billetter til Matilda – Trøndelag Teater<br>
+            💆 Massasje (verdi kr 1 090) – Trondheim Spa<br>
+            🎳 Gavekort fra Lucky Bowl, Fellini, Bella Italia ...<br>
+            <strong style="color:var(--green-mid);">+ over 50 premier totalt!</strong>
+          </div>
+        </div>
+
+        <div style="width:100%; background:#d4edda; border-radius:10px; padding:.85rem 1.2rem; display:flex; align-items:center; gap:.75rem; font-weight:700; color:#155724; font-size:1rem;">
+          <span style="font-size:1.5rem;">❤️</span>
+          50 % av loddinntektene doneres til Barnekreftforeningen!
+        </div>
+
+      </div>
     </div>
   </section>
 
