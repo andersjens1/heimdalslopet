@@ -573,6 +573,40 @@
       .vipps-mobile-btn { display: inline-flex; }
     }
 
+    /* ───── COUNTDOWN ───── */
+    .cd-box {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      padding: .75rem 1.1rem;
+      text-align: center;
+      min-width: 72px;
+    }
+    .cd-box span {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #fbbf24;
+      font-variant-numeric: tabular-nums;
+    }
+    .cd-box label {
+      display: block;
+      font-size: .7rem;
+      opacity: .7;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: .2rem;
+    }
+    #countdown-done {
+      display: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 2rem;
+    }
+
     /* ───── FOOTER ───── */
     footer {
       text-align: center;
@@ -630,6 +664,14 @@
           <span>Arrangert av</span>
           Heimdal Håndball G2013 &amp; J2013
         </div>
+      </div>
+
+      <!-- NEDTELLING -->
+      <div id="countdown-wrap" style="display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem;">
+        <div class="cd-box"><span id="cd-days">–</span><label>dager</label></div>
+        <div class="cd-box"><span id="cd-hours">–</span><label>timer</label></div>
+        <div class="cd-box"><span id="cd-mins">–</span><label>min</label></div>
+        <div class="cd-box"><span id="cd-secs">–</span><label>sek</label></div>
       </div>
     </div>
     <div class="hero-scroll">
@@ -988,6 +1030,31 @@
         btn.textContent = 'Meld deg på';
       }
     }
+  </script>
+
+  <!-- ════════ NEDTELLING ════════ -->
+  <script>
+    (function() {
+      const race = new Date('2026-05-20T17:30:00');
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function tick() {
+        const diff = race - Date.now();
+        if (diff <= 0) {
+          document.getElementById('countdown-wrap').style.display = 'none';
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-days').textContent = d;
+        document.getElementById('cd-hours').textContent = pad(h);
+        document.getElementById('cd-mins').textContent = pad(m);
+        document.getElementById('cd-secs').textContent = pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
   </script>
 
   <!-- ════════ LYKKEHJUL ════════ -->
