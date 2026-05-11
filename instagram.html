@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Heimdalsløpet – Instagram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 32px 16px;
+    }
+
+    .label {
+      color: #888;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      margin-bottom: -20px;
+      align-self: flex-start;
+      margin-left: calc(50% - 225px);
+    }
+
+    /* ── STORY: 450 × 800 (9:16) ── */
+    .story {
+      width: 450px;
+      height: 800px;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* ── SQUARE: 450 × 450 (1:1) ── */
+    .square {
+      width: 450px;
+      height: 450px;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* ════ STORY 1: Generell annonsering ════ */
+    .s1 {
+      background: linear-gradient(160deg, #062419 0%, #0b3d2e 40%, #14663e 70%, #1a8a52 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 32px;
+      gap: 0;
+    }
+
+    .s1::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 300px 300px at 20% 80%, rgba(251,191,36,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 250px 250px at 80% 15%, rgba(26,138,82,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .s1 .badge {
+      background: rgba(251,191,36,0.2);
+      border: 1px solid rgba(251,191,36,0.5);
+      color: #fbbf24;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .s1 .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      font-size: 13px;
+      opacity: .8;
+    }
+
+    .s1 h1 {
+      font-size: 58px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -2px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+
+    .s1 .year {
+      font-size: 32px;
+      font-weight: 900;
+      color: #fbbf24;
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .s1 .info-box {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 20px 28px;
+      width: 100%;
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .s1 .info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: left;
+    }
+    .s1 .info-row:last-child { border-bottom: none; }
+    .s1 .info-row .ico { font-size: 22px; width: 32px; text-align: center; flex-shrink: 0; }
+    .s1 .info-row .txt { flex: 1; }
+    .s1 .info-row .txt strong { display: block; font-size: 16px; font-weight: 700; }
+    .s1 .info-row .txt span { font-size: 12px; opacity: .7; }
+
+    .s1 .start-times {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      position: relative;
+    }
+    .s1 .st-item {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 12px 6px;
+      text-align: center;
+    }
+    .s1 .st-item .emoji { font-size: 20px; display: block; margin-bottom: 4px; }
+    .s1 .st-item .name { font-size: 10px; opacity: .7; display: block; margin-bottom: 2px; }
+    .s1 .st-item .time { font-size: 18px; font-weight: 900; color: #fbbf24; }
+
+    .s1 .bottom {
+      position: absolute;
+      bottom: 28px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 13px;
+      opacity: .55;
+    }
+
+    /* ════ STORY 2: Loddsalg ════ */
+    .s2 {
+      background: linear-gradient(160deg, #1a0a00, #3d1a00, #7c3500);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 32px 80px;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .s2::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 350px 350px at 80% 20%, rgba(251,191,36,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 250px 300px at 10% 80%, rgba(239,68,68,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .s2 .top-badge {
+      background: #fbbf24;
+      color: #78350f;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .4rem 1.2rem;
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .s2 h2 {
+      font-size: 46px;
+      font-weight: 900;
+      position: relative;
+      line-height: 1.05;
+      letter-spacing: -1px;
+    }
+
+    .s2 .price-big {
+      background: rgba(251,191,36,0.15);
+      border: 2px solid #fbbf24;
+      border-radius: 16px;
+      padding: 16px 24px;
+      position: relative;
+      width: 100%;
+    }
+    .s2 .price-big .amount { font-size: 40px; font-weight: 900; color: #fbbf24; }
+    .s2 .price-big .desc { font-size: 14px; opacity: .75; }
+
+    .s2 .qr-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px;
+      position: relative;
+    }
+    .s2 .qr-box img { width: 130px; height: 130px; display: block; border-radius: 8px; }
+    .s2 .qr-label { font-size: 11px; color: #555; margin-top: 6px; font-weight: 600; text-align: center; }
+
+    .s2 .vipps-info {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      position: relative;
+      width: 100%;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    .s2 .prizes-preview {
+      position: relative;
+      width: 100%;
+      text-align: left;
+    }
+    .s2 .prizes-preview .ptitle {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .6;
+      margin-bottom: 8px;
+    }
+    .s2 .prizes-preview .pitem {
+      font-size: 13px;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      opacity: .9;
+    }
+    .s2 .prizes-preview .pitem:last-child { border: none; }
+
+    .s2 .charity {
+      position: absolute;
+      bottom: 24px;
+      left: 32px; right: 32px;
+      background: rgba(212,237,218,0.15);
+      border: 1px solid rgba(212,237,218,0.3);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #a7f3d0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ════ SQUARE 1: Premier ════ */
+    .sq1 {
+      background: linear-gradient(135deg, #0b3d2e, #14663e);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      gap: 14px;
+    }
+
+    .sq1 h2 {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -.5px;
+      margin-bottom: 4px;
+    }
+    .sq1 .sub { font-size: 12px; opacity: .65; margin-bottom: 4px; }
+
+    .sq1 .prize-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+    .sq1 .prize-row .emoji { font-size: 22px; flex-shrink: 0; }
+    .sq1 .prize-row .ptxt { flex: 1; }
+    .sq1 .prize-row .ptxt strong { display: block; font-size: 13px; font-weight: 700; }
+    .sq1 .prize-row .ptxt span { font-size: 11px; opacity: .7; }
+    .sq1 .prize-row .val {
+      font-size: 14px;
+      font-weight: 900;
+      color: #fbbf24;
+      white-space: nowrap;
+    }
+
+    .sq1 .bottom-bar {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      opacity: .55;
+    }
+
+    /* ════ SQUARE 2: Countdown/hype ════ */
+    .sq2 {
+      background: #fbbf24;
+      color: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px;
+      gap: 12px;
+    }
+
+    .sq2 .days {
+      font-size: 110px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -4px;
+      color: #0b3d2e;
+    }
+    .sq2 .days-label { font-size: 18px; font-weight: 700; color: #0b3d2e; opacity: .7; margin-top: -8px; }
+    .sq2 h2 { font-size: 30px; font-weight: 900; letter-spacing: -1px; color: #0b3d2e; }
+    .sq2 .date-pill {
+      background: #0b3d2e;
+      color: #fbbf24;
+      border-radius: 999px;
+      padding: .5rem 1.5rem;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .sq2 .hastags { font-size: 12px; color: #92400e; opacity: .7; }
+  </style>
+</head>
+<body>
+
+  <div class="label" style="color:#aaa; font-size:14px; font-family:Arial; margin-bottom:8px; margin-left:0; align-self:center;">
+    📱 Ta screenshot av hvert kort – tilpasset Instagram Story (9:16) og Square (1:1)
+  </div>
+
+  <!-- ══ STORY 1: Annonsering ══ -->
+  <div class="label">Story 1 – Generell annonsering</div>
+  <div class="story s1">
+    <div class="badge">🏃 Heimdal IF inviterer til</div>
+    <h1>Heimdals-<br>løpet</h1>
+    <div class="year">2026</div>
+    <div class="info-box">
+      <div class="info-row">
+        <span class="ico">📅</span>
+        <div class="txt"><strong>Onsdag 20. mai 2026</strong><span>Heimdal Idrettspark</span></div>
+      </div>
+      <div class="info-row">
+        <span class="ico">💛</span>
+        <div class="txt"><strong>Til inntekt for</strong><span>Barnekreftforeningen & arrangørlagene</span></div>
+      </div>
+      <div class="info-row">
+        <span class="ico">🔗</span>
+        <div class="txt"><strong>heimdalsløpet.no</strong><span>Påmelding & info</span></div>
+      </div>
+    </div>
+    <div class="start-times">
+      <div class="st-item">
+        <span class="emoji">🧒</span>
+        <span class="name">Barneløype</span>
+        <span class="time">17:30</span>
+      </div>
+      <div class="st-item">
+        <span class="emoji">🔵</span>
+        <span class="name">3 km</span>
+        <span class="time">17:45</span>
+      </div>
+      <div class="st-item">
+        <span class="emoji">🟠</span>
+        <span class="name">5 km</span>
+        <span class="time">18:15</span>
+      </div>
+    </div>
+    <div class="bottom">@heimdalshandball · #Heimdalsløpet</div>
+  </div>
+
+  <!-- ══ STORY 2: Loddsalg ══ -->
+  <div class="label">Story 2 – Loddsalg</div>
+  <div class="story s2">
+    <div class="top-badge">🎟 Loddsalg</div>
+    <h2>Vinn<br>flotte<br>premier!</h2>
+
+    <div style="display:flex; gap:16px; align-items:center; position:relative; width:100%;">
+      <div class="qr-box">
+        <img src="vipps-qr-loddsalg.jpg" alt="Vipps QR">
+        <div class="qr-label">Vipps #942884</div>
+      </div>
+      <div style="flex:1;">
+        <div class="price-big">
+          <div class="amount">20 kr</div>
+          <div class="desc">per lodd</div>
+        </div>
+        <div style="margin-top:10px; font-size:12px; line-height:1.6; opacity:.8; position:relative;">
+          Kategori: <strong>«Loddsalg»</strong><br>
+          Husk navn + tlf. i kommentarfeltet<br>
+          📅 Trekning <strong>24. mai</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="prizes-preview">
+      <div class="ptitle">Blant premiene</div>
+      <div class="pitem">🥇 Gavekort kr 2 000 – Britannia Hotel</div>
+      <div class="pitem">🎭 2 billetter til Matilda – Trøndelag Teater</div>
+      <div class="pitem">💆 Massasje (verdi kr 1 090) – Trondheim Spa</div>
+      <div class="pitem">🎳 Lucky Bowl, Fellini, RBK, Grip Klatring...</div>
+      <div class="pitem" style="color:#fbbf24; font-weight:700;">+ over 50 premier totalt!</div>
+    </div>
+
+    <div class="charity">
+      <span style="font-size:1.3rem;">❤️</span>
+      50 % av inntektene → Barnekreftforeningen
+    </div>
+  </div>
+
+  <!-- ══ SQUARE 1: Premier ══ -->
+  <div class="label">Square – Løpspremier (1:1)</div>
+  <div class="square sq1">
+    <h2>🏆 Løpspremier</h2>
+    <div class="sub">Heimdalsløpet · 20. mai 2026</div>
+
+    <div class="prize-row">
+      <span class="emoji">🟠</span>
+      <div class="ptxt">
+        <strong>Beste løper 5 km</strong>
+        <span>Fruktkurv + Løplabbet</span>
+      </div>
+      <span class="val">kr 1 000</span>
+    </div>
+    <div class="prize-row">
+      <span class="emoji">🔵</span>
+      <div class="ptxt">
+        <strong>Beste løper 3 km</strong>
+        <span>Fruktkurv + Løplabbet</span>
+      </div>
+      <span class="val">kr 800</span>
+    </div>
+    <div class="prize-row">
+      <span class="emoji">🎉</span>
+      <div class="ptxt">
+        <strong>Mest stemningsfulle lag</strong>
+        <span>Fruktkurv + Fellini</span>
+      </div>
+      <span class="val">kr 2 500</span>
+    </div>
+    <div class="prize-row">
+      <span class="emoji">👫</span>
+      <div class="ptxt">
+        <strong>Største lag</strong>
+        <span>Fruktkurv + Lucky Bowl</span>
+      </div>
+      <span class="val">kr 2 500</span>
+    </div>
+    <div class="prize-row">
+      <span class="emoji">🧒</span>
+      <div class="ptxt">
+        <strong>Barneløype-premier</strong>
+        <span>Kreativ utkledning + Mest fargerike</span>
+      </div>
+      <span class="val">🎁</span>
+    </div>
+
+    <div class="bottom-bar">
+      <span>heimdalsløpet.no</span>
+      <span>#Heimdalsløpet #Løping #Heimdal</span>
+    </div>
+  </div>
+
+  <!-- ══ SQUARE 2: Countdown ══ -->
+  <div class="label">Square – Nedtelling (1:1)</div>
+  <div class="square sq2">
+    <div class="days">9</div>
+    <div class="days-label">dager igjen!</div>
+    <h2>Heimdalsløpet 2026</h2>
+    <div class="date-pill">📅 20. mai · Heimdal</div>
+    <div style="font-size:14px; font-weight:600; color:#0b3d2e; opacity:.8;">
+      🧒 17:30 · 🔵 17:45 · 🟠 18:15
+    </div>
+    <div class="hastags">#Heimdalsløpet #Løping #Heimdal #Trondheim</div>
+  </div>
+
+</body>
+</html>
