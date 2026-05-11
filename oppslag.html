@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Heimdalsløpet 2026 – Oppslag</title>
+  <style>
+    @page { margin: 0; }
+    @media print {
+      body { margin: 0; background: #fff; }
+      .page { page-break-after: always; box-shadow: none; margin: 0; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #111;
+      font-size: 9pt;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #fff;
+      padding: 8mm 10mm;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5mm;
+    }
+
+    .header {
+      background: #0b3d2e;
+      color: #fff;
+      border-radius: 8px;
+      padding: 4mm 8mm;
+      text-align: center;
+    }
+    .header .event-date { font-size: 8pt; opacity: .8; }
+    .header h1 { font-size: 20pt; font-weight: 900; line-height: 1.1; }
+    .header .tagline { font-size: 7.5pt; opacity: .75; margin-top: 1px; }
+
+    .section-title {
+      font-size: 10pt;
+      font-weight: 800;
+      color: #0b3d2e;
+      border-bottom: 2px solid #0b3d2e;
+      padding-bottom: 2px;
+      margin-bottom: 2.5mm;
+    }
+
+    /* STARTTIDER */
+    .starttider { display: flex; gap: 3mm; }
+    .start-item {
+      flex: 1; text-align: center;
+      background: #f0fdf4;
+      border: 1.5px solid #14663e;
+      border-radius: 7px;
+      padding: 2mm;
+    }
+    .start-item .dist-emoji { font-size: 14pt; }
+    .start-item .dist-name { font-size: 8pt; font-weight: 700; color: #0b3d2e; }
+    .start-item .dist-time { font-size: 13pt; font-weight: 900; color: #14663e; }
+
+    /* LODDSALG */
+    .loddsalg-box {
+      background: linear-gradient(135deg, #fff8e1, #fffde7);
+      border: 2px solid #fbbf24;
+      border-radius: 8px;
+      padding: 3.5mm 4mm;
+      display: flex;
+      gap: 4mm;
+      align-items: flex-start;
+    }
+    .loddsalg-box img { width: 78px; height: 78px; border-radius: 5px; flex-shrink: 0; }
+    .lodd-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2mm 3mm;
+    }
+    .lodd-item { display: flex; align-items: flex-start; gap: 4px; font-size: 8.5pt; line-height: 1.35; }
+    .lodd-item .icon { font-size: 11pt; flex-shrink: 0; }
+    .lodd-note { font-size: 7.5pt; color: #666; margin-top: 1.5mm; }
+
+    .charity-banner {
+      background: #d4edda;
+      border-radius: 6px;
+      padding: 2.5mm 4mm;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #155724;
+    }
+
+    /* PRIZES */
+    .prizes-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+    .prize-card {
+      border: 1.5px solid #e0e0e0;
+      border-radius: 7px;
+      padding: 2.5mm 3mm;
+    }
+    .prize-card .cat-title {
+      font-size: 8.5pt; font-weight: 800; color: #0b3d2e; margin-bottom: 1.5mm;
+    }
+    .prize-card ul { list-style: none; font-size: 8pt; line-height: 1.45; color: #333; }
+    .prize-card ul li::before { content: '• '; color: #14663e; font-weight: 700; }
+
+    /* UTTREKK */
+    .uttrekk-list {
+      columns: 2; column-gap: 6mm;
+      font-size: 8pt; line-height: 1.45;
+      list-style: none;
+    }
+    .uttrekk-list li::before { content: '• '; color: #14663e; font-weight: 700; }
+    .uttrekk-list li { break-inside: avoid; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      font-size: 7.5pt;
+      color: #999;
+      padding-top: 2mm;
+    }
+
+    /* PAGE 2 */
+    .top-prize {
+      background: linear-gradient(135deg, #0b3d2e, #14663e);
+      color: #fff; border-radius: 8px; padding: 3mm 5mm;
+      display: flex; align-items: center; justify-content: space-between; gap: 4mm;
+    }
+    .top-prize .label { font-size: 8pt; opacity: .8; }
+    .top-prize .val { font-size: 13pt; font-weight: 900; color: #fbbf24; }
+
+    .premier-list {
+      columns: 2; column-gap: 6mm;
+      font-size: 8pt; line-height: 1.5;
+    }
+    .premier-list li { break-inside: avoid; margin-bottom: .5mm; }
+    .premier-list li::marker { color: #14663e; }
+  </style>
+</head>
+<body>
+
+<!-- ========== SIDE 1 ========== -->
+<div class="page">
+
+  <div class="header">
+    <div class="event-date">Onsdag 20. mai 2026 · Heimdal Idrettspark</div>
+    <h1>🏃 Heimdalsløpet 2026</h1>
+    <div class="tagline">Arrangert av Heimdal Håndball G2013 &amp; J2013</div>
+  </div>
+
+  <!-- Starttider -->
+  <div>
+    <div class="section-title">⏱ Starttider</div>
+    <div class="starttider">
+      <div class="start-item">
+        <div class="dist-emoji">🧒</div>
+        <div class="dist-name">Barneløype</div>
+        <div class="dist-time">17:30</div>
+      </div>
+      <div class="start-item">
+        <div class="dist-emoji">🔵</div>
+        <div class="dist-name">3 km</div>
+        <div class="dist-time">17:45</div>
+      </div>
+      <div class="start-item">
+        <div class="dist-emoji">🟠</div>
+        <div class="dist-name">5 km</div>
+        <div class="dist-time">18:15</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loddsalg -->
+  <div>
+    <div class="section-title">🎟 Loddsalg</div>
+    <div class="loddsalg-box">
+      <img src="vipps-qr-loddsalg.jpg" alt="Vipps QR-kode">
+      <div class="lodd-grid">
+        <div class="lodd-item">
+          <span class="icon">💰</span>
+          <div><strong>1 lodd = 20 kr</strong><br>Kjøp så mange du vil!</div>
+        </div>
+        <div class="lodd-item">
+          <span class="icon">📅</span>
+          <div><strong>Trekning:</strong><br>Søndag 24. mai 2026</div>
+        </div>
+        <div class="lodd-item">
+          <span class="icon">📱</span>
+          <div><strong>Vipps #942884</strong><br>Scan QR eller bruk nummeret</div>
+        </div>
+        <div class="lodd-item">
+          <span class="icon">✏️</span>
+          <div>Kategori: <strong>«Loddsalg»</strong><br>Husk navn + tlf. i kommentarfeltet</div>
+        </div>
+        <div class="lodd-note" style="grid-column:1/-1;">ℹ️ Kontantbetaling: skriv navn og telefonnummer på lista.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charity-banner">
+    <span style="font-size:1.2rem;">❤️</span>
+    50 % av loddinntektene går til Barnekreftforeningen!
+  </div>
+
+  <!-- Løpspremier -->
+  <div>
+    <div class="section-title">🏆 Løpspremier</div>
+    <div class="prizes-cols">
+      <div class="prize-card">
+        <div class="cat-title">🟠 Beste løper 5 km</div>
+        <ul>
+          <li>Fruktkurv fra Rema 1000 Breidablikk</li>
+          <li>Gavekort kr 1 000 fra Løplabbet</li>
+        </ul>
+      </div>
+      <div class="prize-card">
+        <div class="cat-title">🔵 Beste løper 3 km</div>
+        <ul>
+          <li>Fruktkurv fra Rema 1000 Breidablikk</li>
+          <li>Gavekort kr 800 fra Løplabbet</li>
+        </ul>
+      </div>
+      <div class="prize-card">
+        <div class="cat-title">🎉 Mest stemningsfulle lag</div>
+        <ul>
+          <li>Fruktkurv fra Coop Extra Heimdal</li>
+          <li>Gavekort kr 2 500 fra Fellini</li>
+        </ul>
+      </div>
+      <div class="prize-card">
+        <div class="cat-title">👫 Største venne-/jobblag</div>
+        <ul>
+          <li>Fruktkurv fra Kiwi Tiller</li>
+          <li>Gavekort kr 2 500 fra Lucky Bowl</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barneløype -->
+  <div>
+    <div class="section-title">🧒 Barneløype-premier</div>
+    <div class="prizes-cols">
+      <div class="prize-card">
+        <div class="cat-title">🎨 Kreativt utkledning</div>
+        <ul>
+          <li>Fruktkurv fra Rema 1000 Tiller</li>
+          <li>Gavekort kr 400 fra Extra Leker</li>
+          <li>Drikkeflaske fra 3T</li>
+        </ul>
+      </div>
+      <div class="prize-card">
+        <div class="cat-title">🌈 Mest fargerike</div>
+        <ul>
+          <li>Fruktkurv fra Obs City Syd</li>
+          <li>Gavekort kr 400 fra Trondheim Kino</li>
+          <li>Drikkeflaske fra 3T</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Uttrekkspremier -->
+  <div>
+    <div class="section-title">🎰 Uttrekkspremier på løpet (5 og 3 km)</div>
+    <ul class="uttrekk-list">
+      <li>Gavekort kr 500 – Fellini</li>
+      <li>Gavekort kr 400 – Lucky Bowl</li>
+      <li>Gavekort kr 400 – Lucky Bowl</li>
+      <li>Gavekort kr 300 – Bella Italia</li>
+      <li>Gavekort kr 300 – Stjernegrilln</li>
+      <li>Gavekort kr 250 – Elite Esthetic</li>
+      <li>Gavekort kr 200 – Istanbul Døner Chef</li>
+      <li>Gavekort kr 100 – Escape Hunt</li>
+      <li>Gavekort 4 billetter – Kolstad Håndball</li>
+      <li>Sekk med gavekort og drikkeflaske – 3T</li>
+    </ul>
+  </div>
+
+
+</div>
+
+<!-- ========== SIDE 2: LODDPREMIER ========== -->
+<div class="page">
+
+  <div class="header">
+    <div class="event-date">Trekning: søndag 24. mai 2026</div>
+    <h1>🎟 Loddpremier – Heimdalsløpet 2026</h1>
+    <div class="tagline">1 lodd = 20 kr &nbsp;·&nbsp; Vipps #942884 &nbsp;·&nbsp; 50 % til Barnekreftforeningen</div>
+  </div>
+
+  <div class="top-prize">
+    <div>
+      <div class="label">🥇 Hovedgevinst</div>
+      <div class="val">Gavekort kr 2 000 – Britannia Hotel</div>
+    </div>
+    <div>
+      <div class="label">🎭 2. premie</div>
+      <div style="font-size:10pt; font-weight:800;">2 billetter til Matilda – Trøndelag Teater</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">🎁 Alle premier</div>
+    <ol class="premier-list">
+      <li>Gavekort kr 2 000 – Britannia Hotel</li>
+      <li>2 billetter til Matilda – Trøndelag Teater</li>
+      <li>Gavekort 50 min massasje (verdi kr 1 090) – Trondheim Spa</li>
+      <li>Gavekort verdi kr 1 000 – Ditt Gavekort</li>
+      <li>Gavekort kr 500 – Olavshallen</li>
+      <li>Gavekort kr 500 – Olavshallen</li>
+      <li>Gavekort kr 500 – Fellini</li>
+      <li>Gavekort kr 500 – Fellini</li>
+      <li>Gavekort kr 500 – Fellini</li>
+      <li>Gavekort kr 500 – Bella Italia</li>
+      <li>Gavekort kr 400 – Lucky Bowl</li>
+      <li>Gavekort kr 400 – Lucky Bowl</li>
+      <li>Gavekort kr 400 – Lucky Bowl</li>
+      <li>Gavekort kr 300 – Milano Nardo</li>
+      <li>Gavekort kr 300 – Milano Nardo</li>
+      <li>Gavekort kr 250 – Escape Hunt</li>
+      <li>Gavekort kr 250 – Elite Esthetic</li>
+      <li>Gavekort kr 200 – Escape Hunt</li>
+      <li>Gavekort kr 200 – Escape Hunt</li>
+      <li>Gavekort kr 200 – Istanbul Døner Chef</li>
+      <li>Gavekort kr 100 – Funky City Syd</li>
+      <li>Gavekort 4 billetter – Kolstad Håndball (kamp)</li>
+      <li>Gavekort 4 billetter – Kolstad Håndball (kamp)</li>
+      <li>Gavekort 2 billetter – Grip Klatring (inngang m/utstyr)</li>
+      <li>Gavekort 2 billetter – Grip Klatring (inngang m/utstyr)</li>
+      <li>Gavekort 2 billetter fra RBK – seriekamp</li>
+      <li>Gavekort inngang familie – Husebybadet</li>
+      <li>Gavekort inngang familie – Husebybadet</li>
+      <li>Gavekort 2 barnebilletter – Vitensenteret Trondheim</li>
+      <li>Gavekort inngang 1 person – Rockheim</li>
+      <li>Gavekort inngang 2 stk – Rockheim</li>
+      <li>Gavekort minigolf 2 stk – Trondheim Camping</li>
+      <li>Gavekort minigolf 2 stk – Trondheim Camping</li>
+      <li>Gavekort stor pizza – Sultan Grill</li>
+      <li>Gavekort stor pizza – Sultan Grill</li>
+      <li>Gavekort stor pizza – Palermo</li>
+      <li>Gavekort stor pizza – Palermo</li>
+      <li>2 Middagsbuffet – Vietwok Melhus</li>
+      <li>Gratis middagsbong – Torino Støren</li>
+      <li>Gavekort fra Be Happy Buvika</li>
+      <li>Gavekort fra Be Happy Buvika</li>
+      <li>Gavekort kr 300 – Heimdal Mote</li>
+      <li>EU-kontroll – Arm Bil Heimdal</li>
+      <li>Sekk, 1 ukes gratis trening og drikkeflaske – 3T Rosten</li>
+      <li>Sekk, 1 ukes gratis trening og drikkeflaske – 3T Rosten</li>
+      <li>Sekk, 1 ukes gratis trening og drikkeflaske – 3T Rosten</li>
+      <li>Godiebag fra Kompis Heimdal</li>
+      <li>Verdisjekk kr 379 veggbilder – Cewe</li>
+      <li>Verdisjekk kr 379 fotobok – Cewe</li>
+      <li>Verdisjekk kr 379 fotobok – Cewe</li>
+      <li>Knivsett fra Orrefors Jernverk</li>
+    </ol>
+  </div>
+
+  <div class="charity-banner">
+    <span style="font-size:1.2rem;">❤️</span>
+    50 % av alle loddinntekter doneres til Barnekreftforeningen!
+  </div>
+
+  <div class="footer">
+    heimdalsløpet.no &nbsp;·&nbsp; Vipps #942884 (kategori: Loddsalg) &nbsp;·&nbsp; Trekning 24. mai 2026
+  </div>
+
+</div>
+
+</body>
+</html>
