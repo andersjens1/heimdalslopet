@@ -931,23 +931,13 @@
 
   <!-- ════════ REGISTRATION ════════ -->
   <section class="reg-section" id="pamelding">
-    <h2>🏃 Det er I DAG!</h2>
-    <p>Forhåndspåmelding er nå stengt – men du kan melde deg på i sekretariatet på Heimdal Idrettspark!</p>
-    <div style="background:rgba(255,255,255,0.12); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.2); border-radius:var(--radius); padding:2rem; max-width:480px; margin:0 auto; text-align:left;">
-      <div style="display:flex; flex-direction:column; gap:1rem; font-size:1rem;">
-        <div>📍 <strong>Heimdal Idrettspark</strong> – Onsdag 20. mai 2026</div>
-        <div>🧒 Barneløype starter <strong>kl. 17:30</strong></div>
-        <div>🔵 3 km starter <strong>kl. 17:45</strong></div>
-        <div>🟠 5 km starter <strong>kl. 18:15</strong></div>
-        <div>💰 Startavgift: <strong>min. 60 kr</strong> – betal i sekretariatet</div>
-      </div>
-      <div style="margin-top:1.25rem; background:rgba(251,191,36,0.2); border:1px solid rgba(251,191,36,0.4); border-radius:10px; padding:.9rem 1.1rem; font-size:.95rem;">
-        ⏰ <strong>Møt opp i god tid</strong> – det tar litt tid å registrere seg i sekretariatet, så kom gjerne 20–30 minutter før start for å slippe stress!
-      </div>
-      <p style="margin-top:1rem; opacity:.75; font-size:.9rem;">Vi gleder oss til å se deg! 🎉</p>
+    <h2 id="regHeading">🏃 Det er I DAG!</h2>
+    <p id="regIngress">🎉 Vi har utvidet fristen – forhåndspåmelding er åpen frem til kl. 15:00 i dag!</p>
+    <div style="background:rgba(251,191,36,0.25); border:1px solid rgba(251,191,36,0.5); border-radius:12px; padding:.75rem 1.25rem; max-width:480px; margin:0 auto 1.5rem; font-size:.95rem; font-weight:600;">
+      ⏰ Meld deg på her innen kl. 15:00 – eller møt opp i sekretariatet på Heimdal Idrettspark i god tid før start!
     </div>
 
-    <div class="reg-form" id="regForm" style="display:none;">
+    <div class="reg-form" id="regForm">
       <div id="formFields">
 
         <div style="background: var(--bg-cream); border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1.5rem; text-align: center;">
@@ -1043,6 +1033,22 @@
         btn.textContent = 'Meld deg på';
       }
     }
+  </script>
+
+  <!-- ════════ PÅMELDINGSFRIST ════════ -->
+  <script>
+    (function() {
+      const deadline = new Date('2026-05-20T15:00:00');
+      function checkDeadline() {
+        if (Date.now() >= deadline) {
+          document.getElementById('regForm').style.display = 'none';
+          document.getElementById('regHeading').textContent = '🏃 Det er I DAG!';
+          document.getElementById('regIngress').textContent = 'Forhåndspåmelding er nå stengt – møt opp i sekretariatet på Heimdal Idrettspark i god tid før start!';
+        }
+      }
+      checkDeadline();
+      setInterval(checkDeadline, 10000);
+    })();
   </script>
 
   <!-- ════════ NEDTELLING ════════ -->
